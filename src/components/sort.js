@@ -1,6 +1,6 @@
 export const sort = {
   methods: {
-    Sorted (array, firstSort, secondSort) {
+    DeepSort (array, firstSort, secondSort) {
       var firstSortObject = {}
       for (var i = 0; i < array.length; i++) {
         firstSortObject[array[i][firstSort]] = []
