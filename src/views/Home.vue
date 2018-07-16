@@ -57,8 +57,9 @@ export default {
 
   methods: {
     ToggleRegion (regionName) {
-      if (this.regions.indexOf(regionName) > -1) {
-        this.regions.splice(regionName, 1)
+      var index = this.regions.indexOf(regionName)
+      if (index > -1) {
+        this.regions.splice(index, 1)
         console.log("splicing " + regionName + " from regions")
       }
       else {
