@@ -16,7 +16,7 @@
       <tbody v-for="(person, index) in DeepSort(people,'nationality','name')" :key="index">
       <tr v-if="regions.indexOf(person.region) > -1">
           <td>
-            {{ person }}
+            {{ person.name }}
           </td>
           <td>
             {{ person.nationality }}
