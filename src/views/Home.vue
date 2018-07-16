@@ -13,7 +13,7 @@
       </tr>
       </thead>
 
-      <tbody v-for="(person, index) in Sorted(people)" :key="index">
+      <tbody v-for="(person, index) in DeepSort(people,'nationality','name')" :key="index">
       <tr v-if="regions.indexOf(person.region) > -1">
           <td>
             {{ person }}
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import {sort} from '@/components/sort.js'
+
 export default {
   data () {
     return {
@@ -51,61 +53,9 @@ export default {
     }
   },
 
+  mixins: [sort],
+
   methods: {
-    Sorted () {
-      var nationalities = {}
-      for (var i = 0; i < this.people.length; i++) {
-        nationalities[this.people[i].nationality] = []
-      }
-      for (i = 0; i < this.people.length; i++) {
-        nationalities[this.people[i].nationality].push(this.people[i])
-      }
-      var listOfNat = []
-      var sorted = []
-      for (var k in nationalities) { listOfNat.push(k) }
-      listOfNat = this.Sort(listOfNat)
-      for (var j = 0; j < listOfNat.length; j++) {
-        // console.log(nationalities[listOfNat[j]])
-        sorted.push.apply(sorted, this.SortByName(nationalities[listOfNat[j]]))
-      }
-      // console.log(sorted)
-      return sorted
-    },
-
-    // very simple insertion sort O(n^2)
-    // chosen for simplicity and because this is a very small data set
-    // with very large data sets, it may be better to replace one or both of the search algorithms with merge- or quicksort
-    Sort (arr) {
-      console.log(arr)
-      for (var i = 1; i < arr.length; i++) {
-        var value = arr[i]
-        var test = i - 1
-        while (test > -1 && arr[test] > value) {
-          arr[test + 1] = arr[test]
-          test = test - 1
-        }
-        arr[test + 1] = value
-      }
-      console.log(arr)
-      return arr
-    },
-
-    // the same insertion sort, by sub-property "name" this time
-    SortByName (arr) {
-      console.log(arr)
-      for (var i = 0; i < arr.length; i++) {
-        var value = arr[i].name
-        var test = i - 1
-        while (test > -1 && arr[test].name > value) {
-          arr[test + 1].name = arr[test].name
-          test -= 1
-        }
-        arr[test + 1].name = value
-      }
-      console.log(arr)
-      return arr
-    },
-
     ToggleRegion (regionName) {
       if (this.regions.indexOf(regionName) > -1) {
         this.regions.splice(regionName, 1)
@@ -118,10 +68,6 @@ export default {
       console.log(this.regions)
     }
   },
-
-  computed: {
-    
-  }
 }
 </script>
 
