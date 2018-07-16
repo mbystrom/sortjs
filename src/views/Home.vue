@@ -2,18 +2,19 @@
   <div class="home">
     <img src="../assets/logo.png">
     <p>Filters: </p>
-    <input type="checkbox" name="americas" value="Americas" v-model="americas">Americas<br>
-    <input type="checkbox" name="europe" value="Europe" v-model="europe">Europe
+    <input type="checkbox" name="nam" value="nam" v-on:click="ToggleRegion('North America')" v-bind:checked="regions.indexOf('North America') > -1">North America<br>
+    <input type="checkbox" name="sam" value="sam" v-on:click="ToggleRegion('South America')" v-bind:checked="regions.indexOf('South America') > -1">South America<br>
+    <input type="checkbox" name="eu" value="eu" v-on:click="ToggleRegion('Europe')" v-bind:checked="regions.indexOf('Europe') > -1">Europe
     <table>
       <tr>
         <th>Name</th>
         <th>Nationality</th>
       </tr>
       <tr v-for="(person, index) in Sorted(people)" :key="index">
-          <td v-if="person.region == 'Europe' && europe || person.region == 'South America' && americas || person.region == 'North America' && americas">
+          <td v-if="regions.indexOf(person.region) > -1">
             {{ person }}
           </td>
-          <td v-if="person.region == 'Europe' && europe || person.region == 'South America' && americas || person.region == 'North America' && americas">
+          <td v-if="regions.indexOf(person.region) > -1">
             {{ person.nationality }}
           </td>
       </tr>
@@ -37,8 +38,11 @@ export default {
         { name: 'Chuck', nationality: 'Canada', region: 'North America' },
         { name: 'Anita', nationality: 'Brazil', region: 'South America' }
       ],
-      americas: true,
-      europe: true
+      regions: [
+        "Europe",
+        "North America",
+        "South America"
+      ]
     }
   },
 
@@ -63,7 +67,10 @@ export default {
       return sorted
     },
 
-    Sort(arr) {
+    // very simple insertion sort O(n^2)
+    // chosen for simplicity and because this is a very small data set
+    // with very large data sets, it may be better to replace one or both of the search algorithms with merge- or quicksort
+    Sort (arr) {
       console.log(arr)
       for (var i = 1; i < arr.length; i++) {
         var value = arr[i]
@@ -78,7 +85,8 @@ export default {
       return arr
     },
 
-    SortByName(arr) {
+    // the same insertion sort, by sub-property "name" this time
+    SortByName (arr) {
       console.log(arr)
       for (var i = 0; i < arr.length; i++) {
         var value = arr[i].name
@@ -91,6 +99,18 @@ export default {
       }
       console.log(arr)
       return arr
+    },
+
+    ToggleRegion (regionName) {
+      if (this.regions.indexOf(regionName) > -1) {
+        this.regions.splice(regionName, 1)
+        console.log("splicing " + regionName + " from regions")
+      }
+      else {
+        this.regions.push(regionName)
+        console.log("pushing " + regionName + " to regions")
+      }
+      console.log(this.regions)
     }
   },
 
