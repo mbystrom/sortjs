@@ -6,18 +6,23 @@
     <input type="checkbox" name="sam" value="sam" v-on:click="ToggleRegion('South America')" v-bind:checked="regions.indexOf('South America') > -1">South America<br>
     <input type="checkbox" name="eu" value="eu" v-on:click="ToggleRegion('Europe')" v-bind:checked="regions.indexOf('Europe') > -1">Europe
     <table class="center">
+      <thead>
       <tr>
         <th>Name</th>
         <th>Nationality</th>
       </tr>
-      <tr v-for="(person, index) in Sorted(people)" :key="index">
-          <td v-if="regions.indexOf(person.region) > -1">
+      </thead>
+
+      <tbody v-for="(person, index) in Sorted(people)" :key="index">
+      <tr v-if="regions.indexOf(person.region) > -1">
+          <td>
             {{ person }}
           </td>
-          <td v-if="regions.indexOf(person.region) > -1">
+          <td>
             {{ person.nationality }}
           </td>
       </tr>
+      </tbody>
     </table>
   </div>
 </template>
