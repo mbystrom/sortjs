@@ -5,7 +5,7 @@
     <input type="checkbox" name="nam" value="nam" v-on:click="ToggleRegion('North America')" v-bind:checked="regions.indexOf('North America') > -1">North America<br>
     <input type="checkbox" name="sam" value="sam" v-on:click="ToggleRegion('South America')" v-bind:checked="regions.indexOf('South America') > -1">South America<br>
     <input type="checkbox" name="eu" value="eu" v-on:click="ToggleRegion('Europe')" v-bind:checked="regions.indexOf('Europe') > -1">Europe
-    <table>
+    <table class="center">
       <tr>
         <th>Name</th>
         <th>Nationality</th>
@@ -119,3 +119,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  table.center {
+    margin: auto;
+  }
+</style>
