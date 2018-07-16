@@ -66,7 +66,7 @@ export default {
       listOfNat = this.Sort(listOfNat)
       for (var j = 0; j < listOfNat.length; j++) {
         // console.log(nationalities[listOfNat[j]])
-        sorted.push.apply(sorted, this.SortByName(nationalities[listOfNat[j]]))
+        sorted.push.apply(sorted, this.SortByAttribute(nationalities[listOfNat[j]], 'name'))
       }
       // console.log(sorted)
       return sorted
@@ -91,16 +91,16 @@ export default {
     },
 
     // the same insertion sort, by sub-property "name" this time
-    SortByName (arr) {
+    SortByAttribute (arr, attribute) {
       console.log(arr)
       for (var i = 0; i < arr.length; i++) {
-        var value = arr[i].name
+        var value = arr[i][attribute]
         var test = i - 1
-        while (test > -1 && arr[test].name > value) {
-          arr[test + 1].name = arr[test].name
+        while (test > -1 && arr[test][attribute] > value) {
+          arr[test + 1][attribute] = arr[test][attribute]
           test -= 1
         }
-        arr[test + 1].name = value
+        arr[test + 1][attribute] = value
       }
       console.log(arr)
       return arr
