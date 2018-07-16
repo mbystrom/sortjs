@@ -26,7 +26,7 @@ export const sort = {
     // with very large data sets, it may be better to replace one or both of the search algorithms with merge- or quicksort
     Sort (arr, reverse) {
       reverse = reverse || false
-      console.log(arr)
+      // console.log(arr)
       for (var i = 1; i < arr.length; i++) {
         var value = arr[i]
         var test = i - 1
@@ -44,14 +44,14 @@ export const sort = {
         }
         arr[test + 1] = value
       }
-      console.log(arr)
+      // console.log(arr)
       return arr
     },
 
     // the same insertion sort, by sub-property "name" this time
     SortByAttribute (arr, attribute, reverse) {
       reverse = reverse || false
-      console.log(arr)
+      // console.log(arr)
       for (var i = 0; i < arr.length; i++) {
         var value = arr[i][attribute]
         var test = i - 1
@@ -69,7 +69,7 @@ export const sort = {
         }
         arr[test + 1][attribute] = value
       }
-      console.log(arr)
+      // console.log(arr)
       return arr
     },
 
