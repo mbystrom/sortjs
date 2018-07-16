@@ -1,7 +1,8 @@
 # Multi Level Sort
 
 A fairly simple project that sorts some hard-coded data first by one attribute, then by another. Also allows filtering by attributes  
-Intended as a helpful module for others.
+Intended as a helpful module for others.  
+While this was intended as a vue mixin, it can also be used as a vanilla javascript mixin
 
 In the components folder, you will find sort.js. This is where the magic happens.  
 To use this in your own project, import sort.js into your own components folder.  
