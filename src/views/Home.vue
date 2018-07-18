@@ -7,21 +7,21 @@
     <input type="checkbox" name="eu" value="eu" v-on:click="ToggleRegion('Europe')" v-bind:checked="regions.indexOf('Europe') > -1">Europe
     <table class="center">
       <thead>
-      <tr>
-        <th>Name</th>
-        <th>Nationality</th>
-      </tr>
+        <tr>
+          <th>Name</th>
+          <th>Nationality</th>
+        </tr>
       </thead>
 
-      <tbody v-for="(person, index) in DeepSort(people,'nationality','name')" :key="index">
-      <tr v-if="regions.indexOf(person.region) > -1">
+      <tbody v-for="(person, index) in SortByAttribute(people,'name')" :key="index">
+        <tr v-if="regions.indexOf(person.region) > -1">
           <td>
             {{ person.name }}
           </td>
           <td>
             {{ person.nationality }}
           </td>
-      </tr>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style>
-  table.center {
-    margin: auto;
-  }
+table.center {
+  margin: auto;
+}
 </style>

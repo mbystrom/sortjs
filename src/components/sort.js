@@ -3,17 +3,17 @@ export const sort = {
     DeepSort (array, firstSort, secondSort, reverse) {
       reverse = reverse || false
       var firstSortObject = {}
-      for (var i = 0; i < array.length; i++) {
+      for (let i = 0; i < array.length; i++) {
         firstSortObject[array[i][firstSort]] = []
       }
-      for (i = 0; i < array.length; i++) {
+      for (let i = 0; i < array.length; i++) {
         firstSortObject[array[i][firstSort]].push(array[i])
       }
       var listOfFirst = []
       var sorted = []
-      for (var k in firstSortObject) { listOfFirst.push(k) }
+      for (let i in firstSortObject) { listOfFirst.push(i) }
       listOfFirst = this.Sort(listOfFirst, reverse)
-      for (var j = 0; j < listOfFirst.length; j++) {
+      for (let j = 0; j < listOfFirst.length; j++) {
         // console.log(firstSortObject[listOfFirst[j]])
         sorted.push.apply(sorted, this.SortByAttribute(firstSortObject[listOfFirst[j]], secondSort, reverse))
       }
@@ -27,7 +27,7 @@ export const sort = {
     Sort (arr, reverse) {
       reverse = reverse || false
       // console.log(arr)
-      for (var i = 1; i < arr.length; i++) {
+      for (let i = 1; i < arr.length; i++) {
         var value = arr[i]
         var test = i - 1
         if (reverse) {
@@ -52,7 +52,7 @@ export const sort = {
     SortByAttribute (arr, attribute, reverse) {
       reverse = reverse || false
       // console.log(arr)
-      for (var i = 0; i < arr.length; i++) {
+      for (let i = 0; i < arr.length; i++) {
         var value = arr[i][attribute]
         var test = i - 1
         if (reverse) {
