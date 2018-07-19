@@ -13,7 +13,7 @@
         </tr>
       </thead>
 
-      <tbody v-for="(person, index) in SortByAttribute(people,'name')" :key="index">
+      <tbody v-for="(person, index) in DeepSort(people,'nationality','name')" :key="index">
         <tr v-if="regions.indexOf(person.region) > -1">
           <td>
             {{ person.name }}
